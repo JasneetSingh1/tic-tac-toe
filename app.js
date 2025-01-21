@@ -27,7 +27,7 @@
         if(board[row][column].getValue() != "x" && board[row][column].getValue() != "o"){
             board[row][column].addValue(player.value);
         }else{
-            alert("Invalid Play");
+            throw new Error("Invalid Input");
         }
     }
     
@@ -87,10 +87,14 @@ const gameController = function(){
       };
     
       const playRound = (row, column) => {
-        board.play(getActivePlayer(), row, column)
-
+        try{
+        board.play(getActivePlayer(), row, column);
         switchPlayerTurn();
         printNewRound();
+        } catch(e){
+            console.error(e);
+        }
+
       }
 
       printNewRound();
@@ -101,9 +105,11 @@ const gameController = function(){
 
 };
 
-// const game = gameController()
-// game.playRound(0,1)
-// game.playRound(0,1)
+const game = gameController()
+game.playRound(0,1)
+game.playRound(0,1)
+game.playRound(0,2)
 
 
 // Need to add logic so when player selects invalid cell the game doesnt switch player turn
+// Need to add logic when a player wins, looses, or ties the game                                              
