@@ -30,12 +30,90 @@
             throw new Error("Invalid Input");
         }
     }
+
+const parseBoard = () => {
+    // COLUMNS
+    if(board[0][0].getValue() == "x" && board[1][0].getValue() == "x" && board[2][0].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[0][1].getValue() == "x" && board[1][1].getValue() == "x" && board[2][1].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[0][2].getValue() == "x" && board[1][2].getValue() == "x" && board[2][2].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+
+    if(board[0][0].getValue() == "o" && board[1][0].getValue() == "o" && board[2][0].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+    if(board[0][1].getValue() == "o" && board[1][1].getValue() == "o" && board[2][1].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+    if(board[0][2].getValue() == "o" && board[1][2].getValue() == "o" && board[2][2].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+
+    // ROWS
+
+    if(board[0][0].getValue() == "x" && board[0][1].getValue() == "x" && board[0][2].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[1][0].getValue() == "x" && board[1][1].getValue() == "x" && board[1][2].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[2][0].getValue() == "x" && board[2][1].getValue() == "x" && board[2][2].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+
+    if(board[0][0].getValue() == "o" && board[0][1].getValue() == "o" && board[0][2].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+    if(board[1][0].getValue() == "o" && board[1][1].getValue() == "o" && board[1][2].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+    if(board[2][0].getValue() == "o" && board[2][1].getValue() == "o" && board[2][2].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+
+    // DIAGONAL
+
+    if(board[0][0].getValue() == "x" && board[1][1].getValue() == "x" && board[2][2].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[0][0].getValue() == "o" && board[1][1].getValue() == "o" && board[2][2].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+
+    // TIE
+
+    const isFull = (cell) => cell.every((item) => item.getValue() == 'x' || item.getValue() == 'o') ;
+    if(board.every(isFull)){
+        console.log("It's a Tie");
+        return true;
+    }
+    return false;
+}
     
 
     return{
         board,
         printBoard,
-        play
+        play,
+        parseBoard
     }
  }
 
@@ -87,16 +165,24 @@ const gameController = function(){
       };
     
       const playRound = (row, column) => {
-        try{
-        board.play(getActivePlayer(), row, column);
-        switchPlayerTurn();
-        printNewRound();
+        try{  
+            
+            board.play(getActivePlayer(), row, column);
+
+            if(board.parseBoard() == true){
+                return console.log("END OF GAME"); 
+            }
+
+            switchPlayerTurn();
+            printNewRound();
+            
         } catch(e){
             console.error(e);
         }
 
       }
 
+      
       printNewRound();
 
       return{
@@ -105,11 +191,36 @@ const gameController = function(){
 
 };
 
+
+
 const game = gameController()
 game.playRound(0,1)
 game.playRound(0,1)
 game.playRound(0,2)
+game.playRound(1,2)
+game.playRound(1,1)
+game.playRound(2,0)
+game.playRound(2,1)
+game.playRound(0,0)
+game.playRound(1,0)
+game.playRound(2,2)
+// Need to add logic when a player wins, looses, or ties the game      
 
 
-// Need to add logic so when player selects invalid cell the game doesnt switch player turn
-// Need to add logic when a player wins, looses, or ties the game                                              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
