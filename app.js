@@ -199,7 +199,7 @@ const gameController = function(){
 
 const displayController = function(){
     const game = gameController();
-    const playerTurnDiv = document.querySelector("turn")
+    const playerTurnDiv = document.querySelector(".turn")
     const container = document.querySelector(".game-container");
 
 
@@ -209,10 +209,37 @@ const displayController = function(){
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
-        playerTurnDiv.textContent =`${activePlayer.name}'s turn`
+        playerTurnDiv.textContent =`${activePlayer.name}'s turn`;
+
+        board.forEach((row, rowIndex )=> {
+            row.forEach((cell, colIndex) =>{
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+
+                cellButton.dataset.column = colIndex;
+                cellButton.dataset.row = rowIndex;
+                cellButton.textContent = cell.getValue();
+                container.appendChild(cellButton);
+            })
+        })
     }
 
+
+    function clickHandlerBoard(e){
+        const selectedColumn = e.target.dataset.column;
+        const selectedRow = e.target.dataset.row;
+
+        if(!selectedColumn) return;
+
+        game.playRound(selectedRow, selectedColumn);
+    }
+
+    container.addEventListener("click", clickHandlerBoard);
+
+    updateScreen();
 }
+
+displayController();
 
   
 
