@@ -19,10 +19,6 @@
 
     const getBoard = () => board;
    
-    const printBoard = () => {
-        const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
-        console.log(boardWithCellValues);
-    };
 
     const play = (player, row, column) =>{
         
@@ -36,76 +32,60 @@
     const parseBoard = () => {
     // COLUMNS
     if(board[0][0].getValue() == "x" && board[1][0].getValue() == "x" && board[2][0].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[0][1].getValue() == "x" && board[1][1].getValue() == "x" && board[2][1].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[0][2].getValue() == "x" && board[1][2].getValue() == "x" && board[2][2].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
 
     if(board[0][0].getValue() == "o" && board[1][0].getValue() == "o" && board[2][0].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
     if(board[0][1].getValue() == "o" && board[1][1].getValue() == "o" && board[2][1].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
     if(board[0][2].getValue() == "o" && board[1][2].getValue() == "o" && board[2][2].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
 
     // ROWS
 
     if(board[0][0].getValue() == "x" && board[0][1].getValue() == "x" && board[0][2].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[1][0].getValue() == "x" && board[1][1].getValue() == "x" && board[1][2].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[2][0].getValue() == "x" && board[2][1].getValue() == "x" && board[2][2].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
 
     if(board[0][0].getValue() == "o" && board[0][1].getValue() == "o" && board[0][2].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
     if(board[1][0].getValue() == "o" && board[1][1].getValue() == "o" && board[1][2].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
     if(board[2][0].getValue() == "o" && board[2][1].getValue() == "o" && board[2][2].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
 
     // DIAGONAL
 
     if(board[0][0].getValue() == "x" && board[1][1].getValue() == "x" && board[2][2].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[0][0].getValue() == "o" && board[1][1].getValue() == "o" && board[2][2].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
 
     if(board[0][2].getValue() == "x" && board[1][1].getValue() == "x" && board[2][0].getValue() == "x" ){
-        console.log("X Wins");
         return true;
     }
     if(board[0][2].getValue() == "o" && board[1][1].getValue() == "o" && board[2][0].getValue() == "o" ){
-        console.log("O Wins");
         return true;
     }
 
@@ -121,7 +101,6 @@
 
     return{
         board,
-        printBoard,
         play,
         parseBoard,
         getBoard
@@ -169,13 +148,8 @@ const gameController = function(){
     }
 
     const getActivePlayer = () => activePlayer;
-
-    const printNewRound = () => {
-        board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn.`);
-      };
     
-      const playRound = (row, column) => {
+    const playRound = (row, column) => {
         try{  
             
             board.play(getActivePlayer(), row, column);
@@ -188,14 +162,14 @@ const gameController = function(){
             }
 
             switchPlayerTurn();
-            printNewRound();
+            
             
         } catch(e){
             console.error(e);
         }
 
       }
-      printNewRound();
+      
 
       return{
         playRound,
