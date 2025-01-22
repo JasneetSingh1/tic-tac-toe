@@ -184,14 +184,17 @@ const gameController = function(){
       printNewRound();
 
       return{
-        playRound
+        playRound,
+        getActivePlayer
       }
 
 };
 
 
 
-const game = gameController()
+const displayController = function(){
+
+}
 
   
 
