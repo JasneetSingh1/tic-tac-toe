@@ -14,10 +14,11 @@
 
 Tic-Tac-Toe is a classic 3x3 grid game where two players take turns placing "X" and "O" on the board. The goal is to get three of your marks in a row, column, or diagonal. This project is a web-based implementation using HTML, CSS, and JavaScript. The application supports:
 
-Two-player gameplay
-Interactive gameboard
-Automatic win detection
-Restart functionality
+- Two-player gameplay
+- Interactive gameboard
+- Automatic win detection
+- Restart functionality
+
 The project provides a smooth user experience, ensuring that players can easily track turns, and the game can be reset at any time.
 
 ## Demo
