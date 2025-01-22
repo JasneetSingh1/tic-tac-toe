@@ -100,12 +100,20 @@
         return true;
     }
 
+    if(board[0][2].getValue() == "x" && board[1][1].getValue() == "x" && board[2][0].getValue() == "x" ){
+        console.log("X Wins");
+        return true;
+    }
+    if(board[0][2].getValue() == "o" && board[1][1].getValue() == "o" && board[2][0].getValue() == "o" ){
+        console.log("O Wins");
+        return true;
+    }
+
     // TIE
 
     const isFull = (cell) => cell.every((item) => item.getValue() == 'x' || item.getValue() == 'o') ;
     if(board.every(isFull)){
-        console.log("It's a Tie");
-        return true;
+        return "Tie";
     }
     return false;
 }
@@ -172,8 +180,11 @@ const gameController = function(){
             
             board.play(getActivePlayer(), row, column);
 
+            if(board.parseBoard() == "Tie"){
+                return "Tie";
+            }
             if(board.parseBoard() == true){
-                return console.log("END OF GAME"); 
+                return "End of Game" ;
             }
 
             switchPlayerTurn();
@@ -198,18 +209,34 @@ const gameController = function(){
 
 
 const displayController = function(){
-    const game = gameController();
-    const playerTurnDiv = document.querySelector(".turn")
+    let game = gameController();
+    const playerTurnDiv = document.querySelector(".turn");
     const container = document.querySelector(".game-container");
+    const resetButton = document.querySelector(".reset");
 
 
-    const updateScreen = () =>{
+    function reset(){
+        game = gameController();
+        updateScreen();
+    }
+    
+    resetButton.addEventListener("click", reset);
+
+    const updateScreen = (result ="") =>{
         container.textContent = "";
 
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
-        playerTurnDiv.textContent =`${activePlayer.name}'s turn`;
+        if(result == "End of Game"){
+            playerTurnDiv.textContent =`End of Game: ${activePlayer.name}'s Victory`;
+            
+        }else if(result == "Tie"){
+            playerTurnDiv.textContent =`End of Game: It is a Tie`;
+        }
+        else{
+            playerTurnDiv.textContent =`${activePlayer.name}'s turn`;
+        }
 
         board.forEach((row, rowIndex )=> {
             row.forEach((cell, colIndex) =>{
@@ -231,8 +258,11 @@ const displayController = function(){
 
         if(!selectedColumn) return;
 
-        game.playRound(selectedRow, selectedColumn);
+        let result = game.playRound(selectedRow, selectedColumn);
+        updateScreen(result);
     }
+
+
 
     container.addEventListener("click", clickHandlerBoard);
 
