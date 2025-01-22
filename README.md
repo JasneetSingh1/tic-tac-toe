@@ -24,12 +24,10 @@ The project provides a smooth user experience, ensuring that players can easily 
 
 You can see a live demo of the project here:
 
-Click here: [https://link-to-your-demo-goes-here/](https://link-to-your-demo-goes-here/)
+Click here: [https://jasneetsingh1.github.io/tic-tac-toe/](https://jasneetsingh1.github.io/tic-tac-toe/)
 
 ## Design
 
-Add a screenshot or video here. 
-I recommend https://shots.so
 
 <div align='center'>
 <img src='./desktop-design.png' alt='Screenshot of desktop design'>
@@ -89,14 +87,12 @@ The encapsulation and factory function pattern made it easier to debug the appli
 
 ## Installation
 
-Provide instructions on how to install and run your project locally.
-
-Example below:
+To run the project locally, follow these steps:
 
 1. Clone the GitHub repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/tic-tac-toe.git
+   git clone https://github.com/JasneetSingh1/tic-tac-toe.git
    ```
 
 2. Navigate to the project's directory:
