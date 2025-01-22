@@ -16,6 +16,8 @@
             board[i].push(cell());
         }
     }
+
+    const getBoard = () => board;
    
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
@@ -31,7 +33,7 @@
         }
     }
 
-const parseBoard = () => {
+    const parseBoard = () => {
     // COLUMNS
     if(board[0][0].getValue() == "x" && board[1][0].getValue() == "x" && board[2][0].getValue() == "x" ){
         console.log("X Wins");
@@ -113,7 +115,8 @@ const parseBoard = () => {
         board,
         printBoard,
         play,
-        parseBoard
+        parseBoard,
+        getBoard
     }
  }
 
@@ -185,14 +188,29 @@ const gameController = function(){
 
       return{
         playRound,
-        getActivePlayer
+        getActivePlayer,
+        getBoard: board.getBoard
       }
 
 };
 
 
 
+
 const displayController = function(){
+    const game = gameController();
+    const playerTurnDiv = document.querySelector("turn")
+    const container = document.querySelector(".game-container");
+
+
+    const updateScreen = () =>{
+        container.textContent = "";
+
+        const board = game.getBoard();
+        const activePlayer = game.getActivePlayer();
+
+        playerTurnDiv.textContent =`${activePlayer.name}'s turn`
+    }
 
 }
 
